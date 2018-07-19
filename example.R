@@ -1,7 +1,6 @@
 library(tidyverse)
 
 source("https://bit.ly/byuisql")
-source("connect.R")
 
 # Establish a connection to a database on our SQL server
 connection <- connect("melaleuca")
