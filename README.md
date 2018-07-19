@@ -1,4 +1,4 @@
-# sql_server
+# BYUI Data Science SQL Server Usage Guide
 
 ## Introduction
 The purpose of the BYUI Data Science SQL Server is to twofold:
