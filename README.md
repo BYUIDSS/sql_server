@@ -11,29 +11,68 @@ To fulfill this ongoing purpose, this guide provides instruction for maintenance
 ## Editor Role Instructions
 *Editors are responsible for creating a new database on the server for each project, uploading initial data to that database, and maintaining the database throughout the lifetime of its associated project.*
 
-### Downloading Microsoft SQL Server Management Studio
+### Getting Started with Microsoft SQL Server Management 
+
+#### Download the Software
+*Microsoft SQL Server Management Studio (SSMS) is an interactive interface to manage databases on a server.*
+1. Visit https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms and follow the instuctions to download the newest version of Microsoft SQL Server Management Studio (SSMS).
+2. Execute the downloaded file to install the program.
+
+#### Connecting to the Server (ONLY WORKS ON CAMPUS)
+*You will need to login to the server every time you launch Microsoft SSMS.*
+1. In the dialogue box that appears titled "Connect to Server" enter the following information:  
+Server type: Database Engine  
+Server name: shiny.byui.edu  
+Authentication: SQL Server Authentication  
+Login: editor  
+Password: (Reach out to Brother Hathaway to get the password to our SQL Server *editor* account.)
+2. Click "connect"
+
 ### Creating a Database
+*We will use one new database to hold all necessary datatables for each new project on the Server.*
+1. Within the "Object Explorer" pane in Microsoft SSMS, right-click on the folder titled "Databases".
+2. Click the option "New Database" in the dropdown menu.
+3. Type a name for the database in the "Database name" field.
+4. Click "OK" to initialize your empty new database.
 
-### Uploading Initial Data
-#### Storing Data as a Tidy CSV
+### Uploading Data
+*When using SQL Server only for data storage we don't need to worry much about datatypes and keys.*
+1. Ensure that the data is downloaded on your computer and saved as a `.csv` file.
+2. Within the "Object Explorer" pane in Microsoft SSMS, expand the folder titled "Databases".
+3. Right-click on the name of your database object.
+4. Hover over the "Tasks" item in the dropdown list and click on the "Import Flat File..." option.
+5. Click "Next".
+6. Click "Browse" and navigate to your data.
+7. Enter the name for your new datatable.
+8. Click "Next" two times.
+9. Check the "Allow Nulls" box for every item.
+10. Click "Next".
+10. Click "Finish".
 
-#### Microsoft SSMS Data Import Wizard
+### Deleting Mistakes
 
-### Maintaining the Database
-#### Deleting Tables
+#### Delete a Table
+1. Within the "Object Explorer" pane in Microsoft SSMS, expand the folder titled "Databases".
+2. Expand your database object and the folder inside titled "Tables".
+3. Right click on the table you would like to delete.
+4. Click the "Delete" option the dropdown menu.
+5. Click "OK".
 
-#### Updating Tables
-
+### Delete a Database
+1. Within the "Object Explorer" pane in Microsoft SSMS, expand the folder titled "Databases".
+2. Right click on the database you would like to delete.
+3. Click the "Delete" option the dropdown menu.
+4. Click "OK".
 
 ## Student Role Instructions
 *Students have the ability to use the server to read data into their sessions of RStudio.*
 
-### Establishing a Connection to the Server
+### Establishing a Connection to the Server (ONLY WORKS ON CAMPUS)
 *To access your database, you must first create a special "connection" object.*
 1. Run the following code snippet within your RStudio session to load a function called "connect" into your environment: `source("https://bit.ly/byuisql")`
 2. Speak to your project's designated Editor to learn the name of your project's database on the server.
 3. Run the following code snippet within your RStudio session to create a connection object named "connection" that points to your database: `connection <- connect("name of your database")`
-4. Enter the password. (Reach out to Brother Hathaway to get the password to our SQL Server student account.)
+4. Enter the password. (Reach out to Brother Hathaway to get the password to our SQL Server *student* account.)
 
 ### Reading Data into RStudio
 
@@ -56,6 +95,6 @@ query <- query %>%
 ```
 
 #### Turning the Query into an R DataFrame
-*Turning a query object into a dataframe only requires one simple step*
+*Turning a query object into a dataframe only requires one simple step.*
 1. Use the `collect()` function from the dbplyr package to convert your query into a local dataframe.  
 For example: `data <- collect(query)`.
